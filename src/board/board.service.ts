@@ -52,6 +52,14 @@ export class BoardService {
     return response;
   }
 
+  async cloneBoard(
+    boardId: number,
+    user: User,
+  ): Promise<{ result: string; name: string }> {
+    const response = await this.boardRepository.cloneBoard(boardId, user);
+    return response;
+  }
+
   async deleteABoard(id: number): Promise<{ result: string }> {
     const board: Board = await this.boardRepository.findOne({ id });
     if (!board) throw new NotFoundException(`Board not found ${id}`);

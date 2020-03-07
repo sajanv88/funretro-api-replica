@@ -30,6 +30,11 @@ export class BoardController {
     return this.bs.getBoards(user);
   }
 
+  @Get('/clone/:boardId')
+  cloneBoard(@Param('boardId', ParseIntPipe) boardId: number, @GetUser() user: User) {
+    return this.bs.cloneBoard(boardId, user);
+  }
+
   @Get('/:boardId/:signature')
   fetchABoard(
     @Param('boardId', ParseIntPipe) boardId: number,
