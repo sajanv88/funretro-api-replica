@@ -31,7 +31,16 @@ export class BoardService {
   async getBoardAndTasks(
     signature: string,
   ): Promise<{ board: BoardInterface; tasks: Task[] }> {
-    const { id, name, salt, templates } = await this.boardRepository.findOne({
+    const {
+      id,
+      name,
+      salt,
+      templates,
+      disableVotes,
+      shouldHideTask,
+      votes,
+      hideVoteCount,
+    } = await this.boardRepository.findOne({
       salt: signature,
     });
     const tasks: Task[] = await this.ts.getTasksByBoardById(id);
@@ -40,6 +49,10 @@ export class BoardService {
       name,
       salt,
       templates,
+      disableVotes,
+      shouldHideTask,
+      hideVoteCount,
+      votes,
     };
     return { board, tasks };
   }
@@ -75,13 +88,38 @@ export class BoardService {
     };
   }
 
+  async deletePublicTask(signature: string, taskId: number) {
+    const board: Board = await this.boardRepository.findOne({
+      salt: signature,
+    });
+    if (!board)
+      throw new NotFoundException(`Board not found /public/${signature}`);
+    await this.ts.deleteTask(taskId, board);
+  }
+
+  async updatePublicTask(
+    signature: string,
+    taskId: number,
+    updateTaskDto: CreateTaskDto,
+  ): Promise<{ result: Task }> {
+    const board: Board = await this.boardRepository.findOne({
+      salt: signature,
+    });
+    if (!board)
+      throw new NotFoundException(`Board not found /public/${signature}`);
+    const task = await this.ts.updateTask(taskId, board, updateTaskDto);
+    return task;
+  }
+
   async createTask(
     salt: string,
     createTaskDto: CreateTaskDto,
-  ): Promise<{ result: string }> {
+  ): Promise<{ result: Task }> {
     const board: Board = await this.boardRepository.findOne({ salt });
     if (!board) throw new NotFoundException(`Board not found`);
-    await this.ts.createTask(createTaskDto, board);
-    return { result: 'ok!' };
+    const task = await this.ts.createTask(createTaskDto, board);
+    return {
+      result: task,
+    };
   }
 }

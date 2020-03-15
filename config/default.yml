@@ -1,13 +1,14 @@
 server:
   port: 3000
+  socketPort: 3002
 
 db:
-  type: 'postgres'
+  type: "postgres"
   port: 5432
-  database: 'review'
+  database: "review"
 
 jwt:
   expiresIn: 3600
 
 email:
-  from: 'noreply@review.io'
+  from: "noreply@review.io"

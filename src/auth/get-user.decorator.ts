@@ -13,7 +13,8 @@ export interface UserInterface {
 
 export const GetUser = createParamDecorator(
   (data, req): UserInterface => {
-    const { id, email, fullName, createdAt, isVerfied, boards } = req.user;
+    const userInfo = req.args[0].user;
+    const { id, email, fullName, createdAt, isVerfied, boards } = userInfo;
     const user: UserInterface = {
       id,
       email,

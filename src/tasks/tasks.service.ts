@@ -56,6 +56,20 @@ export class TasksService {
     }
   }
 
+  async updateTask(
+    id: number,
+    board: Board,
+    updateTaskDto: CreateTaskDto,
+  ): Promise<{ result: Task }> {
+    const task = await this.getTaskById(id, board);
+    if (!task)
+      throw new NotFoundException('source not found to perform this operation');
+    task.description = updateTaskDto.description;
+    task.noOfVotes = updateTaskDto.noOfVotes;
+    await task.save();
+    return { result: task };
+  }
+
   async updateTaskStatus(
     id: number,
     status: TaskStatus,

@@ -1,7 +1,6 @@
 import { IsNotEmpty, Min, Max } from 'class-validator';
 
 export class CreateTaskDto {
-  @IsNotEmpty()
   title: string;
 
   @IsNotEmpty()

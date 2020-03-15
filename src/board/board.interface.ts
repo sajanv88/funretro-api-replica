@@ -5,4 +5,8 @@ export interface BoardInterface {
   name: string;
   templates?: BoardColumn;
   salt: string;
+  shouldHideTask: boolean;
+  disableVotes: boolean;
+  hideVoteCount: boolean;
+  votes: number;
 }
