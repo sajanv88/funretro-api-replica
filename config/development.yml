@@ -1,11 +1,11 @@
 db:
-  host: "localhost"
-  username: "root"
-  password: "password123"
+  host: 'localhost'
+  username: 'root'
+  password: 'password123'
   synchronize: true
 
 jwt:
-  secret: "topSecret51"
+  secret: 'topSecret51'
 
 email:
-  transport: ""
+  transport: 'smtps://blair.conroy@ethereal.email:TEtURAEFV2ahC1qbt7@smtp.ethereal.email'

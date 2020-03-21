@@ -12,7 +12,7 @@ import {
 import { BoardService } from './board.service';
 import { CreateTaskDto } from 'src/tasks/dto/create-task.dto';
 
-@Controller('public')
+@Controller('publicboard')
 export class PublicBoardController {
   constructor(private bs: BoardService) {}
 
