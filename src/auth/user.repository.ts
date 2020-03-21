@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
+import * as uuid from 'uuid';
 import { User } from './user.entity';
 import {
   AuthCredentialsSignupDto,

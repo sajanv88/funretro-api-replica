@@ -1,3 +1,4 @@
+import * as uuid from 'uuid';
 import { Task } from './task.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -51,6 +52,7 @@ export class TaskRepository extends Repository<Task> {
     task.status = TaskStatus.OPEN;
     task.boardId = board.id;
     task.boardTemplateId = createTaskDto.boardTemplateId;
+    task.annonymousToken = createTaskDto.annonymousToken;
 
     try {
       await task.save();

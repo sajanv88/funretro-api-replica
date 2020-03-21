@@ -30,7 +30,10 @@ export class BoardService {
 
   async getBoardAndTasks(
     signature: string,
-  ): Promise<{ board: BoardInterface; tasks: Task[] }> {
+  ): Promise<{
+    board: BoardInterface;
+    tasks: Task[];
+  }> {
     const {
       id,
       name,
@@ -118,8 +121,29 @@ export class BoardService {
     const board: Board = await this.boardRepository.findOne({ salt });
     if (!board) throw new NotFoundException(`Board not found`);
     const task = await this.ts.createTask(createTaskDto, board);
+
     return {
       result: task,
     };
+  }
+
+  async updateBoard(
+    boardId: number,
+    user: User,
+    boardDto: CreateBoardDto,
+  ): Promise<Board> {
+    console.log(user, 'user');
+    const board: Board = await this.boardRepository.findOne({
+      id: boardId,
+      userId: user.id,
+    });
+    if (!board) throw new NotFoundException(`Board not found`);
+    board.shouldHideTask = boardDto.shouldHideTask;
+    board.votes = boardDto.votes;
+    board.hideVoteCount = boardDto.hideVoteCount;
+    board.disableVotes = boardDto.disableVotes;
+    board.name = boardDto.name;
+    await board.save();
+    return board;
   }
 }

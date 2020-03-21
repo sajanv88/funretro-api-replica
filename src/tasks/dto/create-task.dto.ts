@@ -12,4 +12,7 @@ export class CreateTaskDto {
 
   @IsNotEmpty()
   boardTemplateId: number;
+
+  @IsNotEmpty()
+  annonymousToken: string;
 }

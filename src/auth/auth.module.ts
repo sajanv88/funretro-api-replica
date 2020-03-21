@@ -6,8 +6,8 @@ import { UserRepository } from './user.repository';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
-import * as config from 'config';
 import { EmailModule } from 'src/email/email.module';
+import * as config from 'config';
 
 const jwtConfig = config.get('jwt');
 
@@ -25,6 +25,6 @@ const jwtConfig = config.get('jwt');
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [JwtStrategy, PassportModule],
+  exports: [JwtStrategy, PassportModule, AuthService],
 })
 export class AuthModule {}

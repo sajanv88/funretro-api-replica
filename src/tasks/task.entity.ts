@@ -28,6 +28,9 @@ export class Task extends BaseEntity {
   @Column()
   boardTemplateId: number;
 
+  @Column()
+  annonymousToken: string;
+
   @ManyToOne(
     type => Board,
     board => board.id,

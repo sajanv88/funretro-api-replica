@@ -24,7 +24,9 @@ export class TasksService {
   }
 
   async getTasksByBoardById(id: number): Promise<Task[]> {
-    const tasks = await this.taskRepository.find({ boardId: id });
+    const tasks = await this.taskRepository.find({
+      boardId: id,
+    });
     return tasks;
   }
 

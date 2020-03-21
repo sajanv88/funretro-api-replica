@@ -8,6 +8,8 @@ import {
   Param,
   ParseIntPipe,
   ValidationPipe,
+  Put,
+  Query,
 } from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -31,7 +33,10 @@ export class BoardController {
   }
 
   @Get('/clone/:boardId')
-  cloneBoard(@Param('boardId', ParseIntPipe) boardId: number, @GetUser() user: User) {
+  cloneBoard(
+    @Param('boardId', ParseIntPipe) boardId: number,
+    @GetUser() user: User,
+  ) {
     return this.bs.cloneBoard(boardId, user);
   }
 
@@ -51,5 +56,16 @@ export class BoardController {
   @Delete('/:boardId')
   deleteBoard(@Param('boardId', ParseIntPipe) boardId: number) {
     return this.bs.deleteABoard(boardId);
+  }
+
+  @Put('/:boardId')
+  async updateOptions(
+    @Param('boardId', ParseIntPipe)
+    boardId: number,
+    @Body() boardDto: CreateBoardDto,
+    @GetUser() user: User,
+  ) {
+    const result = await this.bs.updateBoard(boardId, user, boardDto);
+    return result;
   }
 }
