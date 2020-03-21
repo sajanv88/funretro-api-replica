@@ -1,6 +1,6 @@
 ## Description
 
-This is to show my backend node js skill. I have built this project similir like [funretro.io](http://funretro.io/) for demo purpose using nestjs framework. [Nestjs](https://nestjs.com/)
+This is to show my backend node js skill. I have built this project similar like [funretro.io](http://funretro.io/) for demo purpose using nestjs framework. [Nestjs](https://nestjs.com/)
 
 ## Features
 
