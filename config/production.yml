@@ -1,5 +1,8 @@
 server:
-  origin: ""
+  origin: ''
 
 db:
   synchronize: false
+
+email:
+  transport: 'smtps://blair.conroy@ethereal.email:TEtURAEFV2ahC1qbt7@smtp.ethereal.email'
