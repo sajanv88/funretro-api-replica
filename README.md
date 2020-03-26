@@ -11,6 +11,10 @@ This is to show my backend node js skill. I have built this project similar like
 - Users can vote the task/feedback and delete or edit the take which they owned.
 - All users are connected via websocket and will recieve realtime updates.
 
+## Demo
+
+- Demo link [replica-funretro-app](https://replica-funretro.herokuapp.com/)
+
 ## Installation
 
 ```bash
