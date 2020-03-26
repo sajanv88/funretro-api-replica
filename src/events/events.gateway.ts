@@ -9,7 +9,7 @@ import {
 import { Server } from 'ws';
 import * as uuid from 'uuid';
 
-@WebSocketGateway({ transport: ['websocket'] })
+@WebSocketGateway(3002, { transport: ['websocket'] })
 export class EventsGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
